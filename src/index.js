@@ -16,6 +16,7 @@ import Home from './containers/Home';
 import Level from './containers/Level';
 import Help from './containers/Help';
 import Stats from './containers/Stats';
+import Scoreboard from './containers/Scoreboard';
 import NotFound404 from './components/NotFound404';
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -29,6 +30,7 @@ store.dispatch(actions.loadGamedata())
 ReactDOM.render(
   <Provider store={store}>
     <Router history={syncHistoryWithStore(browserHistory, store)}>
+      <Route path={constants.PATH_SCOREBOARD} component={Scoreboard}/>
       <Route path={constants.PATH_ROOT} component={App}>
         <IndexRoute component={Home}/>
         <Route path={constants.PATH_HELP} component={Help}/>
@@ -98,7 +100,7 @@ function checkWrongNetwork(id) {
   if(onWrongNetwork) {
     console.error(`Heads up, you're on the wrong network!! @bad Please switch to the << ${constants.ACTIVE_NETWORK.name.toUpperCase()} >> network.`)
     console.error(`1) From November 2 you can turn on privacy mode (off by default) in settings if you don't want to expose your info by default. 2) If privacy mode is turn on you have to authorized metamask to use this page. 3) then refresh.`)
-    
+
     if(id === constants.NETWORKS.ROPSTEN.id) {
       console.error(`If you want to play on Ropsten, check out https://ropsten.ethernaut.openzeppelin.com/`)
     }

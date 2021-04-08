@@ -4,7 +4,8 @@ import * as constants from '../constants'
 const initialState = {
   address: undefined,
   completedLevels: {},
-  emittedLevels: {}
+  emittedLevels: {},
+  nickname: ""
 }
 
 export default function(state = initialState, action) {
@@ -45,6 +46,14 @@ export default function(state = initialState, action) {
         cachePlayer(newState)
       }
       else newState = state
+      break
+
+    case actions.REGISTER:
+      newState = {
+        ...state,
+        nickname: action.nickname
+      }
+      cachePlayer(newState)
       break
 
     default:

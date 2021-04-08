@@ -10,7 +10,7 @@ export const NETWORKS = {
     name: 'local',
     id: '*',
     url: 'http://localhost',
-    port: 8545
+    port: 7545
   },
   ROPSTEN: {
     name: 'ropsten',
@@ -51,6 +51,7 @@ export const PATH_HELP = '/help'
 export const PATH_LEVEL_ROOT = `${PATH_ROOT}level/`
 export const PATH_LEVEL = `${PATH_LEVEL_ROOT}:address`
 export const PATH_STATS = `${PATH_ROOT}stats`
+export const PATH_SCOREBOARD = `${PATH_ROOT}scoreboard`
 
 // RELEASE SENSITIVE
 // -----------------------------------------------------------------------------------------
@@ -59,7 +60,7 @@ export const CUSTOM_LOGGING = true                              /* TRUE on produ
 export const SHOW_ALL_COMPLETE_DESCRIPTIONS = false             /* FALSE on production */
 export const SHOW_VERSION = true                                /* TRUE on production */
 // export const ACTIVE_NETWORK = NETWORKS.ROPSTEN
-export const ACTIVE_NETWORK = NETWORKS.RINKEBY
-// export const ACTIVE_NETWORK = NETWORKS.LOCAL
+// export const ACTIVE_NETWORK = NETWORKS.RINKEBY
+export const ACTIVE_NETWORK = NETWORKS.LOCAL
 // -----------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------

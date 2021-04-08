@@ -31,13 +31,13 @@ class Header extends React.Component {
             </button>
             <div className="navbar-brand" style={{paddingTop: '0', paddingBottom: '0', paddingLeft: '25px', lineHeight: '49px'}}>
               <span>
-                <a href="https://openzeppelin.com" target="_blank" rel="noopener noreferred">
+                {/*<a href="https://openzeppelin.com" target="_blank" rel="noopener noreferred">
                   <img style={{width: '40px', height: '40px'}} src='../../imgs/openzeppelin-logo.svg' alt='OpenZeppelin'/>
-                </a>
+                </a>*/}
               </span>
               &nbsp;
               <Link to={constants.PATH_ROOT}  style={{ textDecoration: 'none' }} activeStyle={{display: 'inline-block', verticalAlign: 'text-top', lineHeight: '22px'}}>
-                <span style={{}}>Ethernaut</span>
+                <span style={{}}>DeFi Hack</span>
               </Link>
             </div>
           </div>
@@ -50,6 +50,9 @@ class Header extends React.Component {
               <li className={currentPath === constants.PATH_ROOT ? 'active' : ''}>
                 <Link to={constants.PATH_ROOT} style={{fontSize: '16px'}}>Home</Link>
               </li>
+              <li className={currentPath === constants.PATH_SCOREBOARD ? 'active' : ''}>
+                <Link to={constants.PATH_SCOREBOARD} style={{fontSize: '16px'}}>Scoreboard</Link>
+              </li>
               <li className={currentPath === constants.PATH_HELP ? 'active' : ''}>
                 <Link to={constants.PATH_HELP} style={{fontSize: '16px'}}>Help</Link>
               </li>
@@ -57,8 +60,14 @@ class Header extends React.Component {
 
             {/* RIGHT */}
             <ul className="nav navbar-nav pull-right">
-              <li>
+              {/*<li>
                 <Link style={{fontSize: '16px'}}><ConsoleDetect/></Link>
+              </li>*/}
+              <li>
+                <Link style={{fontSize: '16px'}}>{this.props.player.nickname ? <span
+                  style={{fontSize: '16px'}}
+                  className="text-muted"
+                >Hello, {this.props.player.nickname}!</span> : ""}</Link>
               </li>
             </ul>
           </div>
@@ -71,7 +80,8 @@ class Header extends React.Component {
 
 
 function mapStateToProps(state) {
-  return { allLevelsCompleted: state.player.allLevelsCompleted }
+  return { allLevelsCompleted: state.player.allLevelsCompleted,
+          player: state.player }
 }
 
 export default withRouter(connect(mapStateToProps)(Header))

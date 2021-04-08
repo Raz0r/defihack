@@ -2,8 +2,15 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as constants from '../constants'
+import * as actions from '../actions'
 
 class Home extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {'nickname': ''};
+    this.handleChange = this.handleChange.bind(this);
+  }
 
   navigateToFirstIncompleteLevel() {
 
@@ -22,6 +29,11 @@ class Home extends React.Component {
     this.props.router.push(`${constants.PATH_LEVEL_ROOT}${target}`)
   }
 
+  handleChange(event) {
+    this.setState({nickname: event.target.value});
+    console.log(event.target.value);
+  }
+
   render() {
     return (
       <div
@@ -31,27 +43,37 @@ class Home extends React.Component {
         paddingRight: '40px',
       }}>
 
-        <div className="col-sm-12">
-
+        <div className="col-sm-8">
+        {/* INFO */}
+        { this.props.player.nickname ?
+        (<div><span>Hello, {this.props.player.nickname}!</span><form><button
+          style={{marginTop: '10px'}}
+          className="btn btn-primary"
+          onClick={() => this.navigateToFirstIncompleteLevel()}
+        >
+          Play now!
+        </button></form></div>)
+        : (<form><input
+          className="form-control"
+          type="text"
+          style={{marginTop: '10px'}}
+          width="200px"
+          onChange={this.handleChange}
+          placeholder="Nickname"
+          name="nickname"
+        >
+        </input><button
+          type="button"
+          style={{marginTop: '10px'}}
+          className='btn btn-warning'
+          onClick={evt => this.props.register(this.state.nickname)}
+        >
+          Register
+        </button></form>)}
           {/* TITLE */}
-          <h2 className="title">
-            The Ethernaut&nbsp;
-            <small style={{ fontSize: 10 }}>by</small>
-            <a href='https://openzeppelin.com' target="_blank" rel="noopener noreferred">
-              <img style={{ maxWidth: '120px' }} src='../../imgs/openzeppelin-by-logo.png' alt='OpenZeppelin'/>
-            </a>
-          </h2>
-          {/* INFO */}
-          <p>The Ethernaut is a Web3/Solidity based wargame inspired on <a href="https://overthewire.org" target="_blank" rel="noopener noreferred">overthewire.org</a>, played in the Ethereum Virtual Machine. Each level is a smart contract that needs to be 'hacked'.</p>
-          <p>The game is 100% open source and all levels are contributions made by other players. Do you have an interesting idea? PRs are welcome at <a href="https://github.com/OpenZeppelin/ethernaut">github.com/OpenZeppelin/ethernaut</a>.</p>
-          <p>Are you interested in smart contract development or security? Does securing the world’s blockchain infrastructure sound exciting to you? <a href="https://openzeppelin.com/jobs" target="_blank" rel="noopener noreferred"><strong style={{ color: '#eb5424', fontWeight: 600 }}>We are hiring!</strong></a></p>
-          <button
-            style={{marginTop: '10px'}}
-            className="btn btn-primary"
-            onClick={() => this.navigateToFirstIncompleteLevel()}
-          >
-            Play now! 
-          </button>
+          <img
+            width="50%"
+            src='../../imgs/defihack.png'/>
         </div>
       </div>
     )
@@ -61,13 +83,14 @@ class Home extends React.Component {
 function mapStateToProps(state) {
   return {
     levels: state.gamedata.levels,
-    completedLevels: state.player.completedLevels
+    completedLevels: state.player.completedLevels,
+    player: state.player
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-
+    register: actions.register
   }, dispatch);
 }
 

@@ -3,12 +3,26 @@
 @import "./page.css";
 @import url(https://fonts.googleapis.com/css?family=Lato:100,200,300,400,500,700,400italic,700italic);
 
+.form-control {
+    display: block;
+    width: 50%;
+    padding: .375rem .75rem;
+    /*font-size: 1rem;*/
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
 .no-margin {
     margin: 0 !important;
 }
 
 .btn {
-    font-weight: 300;
+    /* font-weight: 300; */
     letter-spacing: 0.75px !important;
     border: 1px solid;
     border-image: initial;
@@ -108,4 +122,3 @@
     font-weight: 400;
     font-size: 10px !important;
 }
-

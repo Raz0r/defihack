@@ -36,3 +36,12 @@ export const collectStats = () => ({ type: COLLECT_STATS })
 
 export const SET_BLOCK_NUM = "SET_BLOCK_NUM";
 export const setBlockNum = num => ({ type: SET_BLOCK_NUM, blockNum: num })
+
+export const CHECK_ALL_COMPLETED = "CHECK_ALL_COMPLETED";
+export const checkAllLevelsCompleted = allCompleted => ({ type: CHECK_ALL_COMPLETED, allCompleted })
+
+export const REGISTER = "REGISTER";
+export const register = (nickname) => ({ type: REGISTER, nickname })
+
+export const SET_PLAYER_NICKNAME = "SET_PLAYER_NICKNAME";
+export const setPlayerNickname = (address, nickname) => ({ type: SET_PLAYER_NICKNAME, nickname })

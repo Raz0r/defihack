@@ -10,6 +10,7 @@ contract Ethernaut is Ownable {
   // ----------------------------------
 
   mapping(address => bool) registeredLevels;
+  mapping(address => string) players;
 
   // Only registered levels will be allowed to generate and validate level instances.
   function registerLevel(Level _level) public onlyOwner {
@@ -28,8 +29,16 @@ contract Ethernaut is Ownable {
 
   mapping(address => EmittedInstanceData) emittedInstances;
 
-  event LevelInstanceCreatedLog(address indexed player, address instance);
-  event LevelCompletedLog(address indexed player, Level level);
+  event LevelInstanceCreatedLog(address indexed player, address instance, string nickname);
+  event LevelCompletedLog(address indexed player, Level level, string nickname);
+
+  function register(string memory _nickname) public returns(bool) {
+    if(bytes(_nickname).length > 0 && bytes(players[msg.sender]).length == 0) {
+      players[msg.sender] = _nickname;
+      return true;
+    }
+    return false;
+  }
 
   function createLevelInstance(Level _level) public payable {
 
@@ -43,7 +52,7 @@ contract Ethernaut is Ownable {
     emittedInstances[instance] = EmittedInstanceData(msg.sender, _level, false);
 
     // Retrieve created instance via logs.
-    emit LevelInstanceCreatedLog(msg.sender, instance);
+    emit LevelInstanceCreatedLog(msg.sender, instance, players[msg.sender]);
   }
 
   function submitLevelInstance(address payable _instance) public {
@@ -60,7 +69,7 @@ contract Ethernaut is Ownable {
       data.completed = true;
 
       // Notify success via logs.
-      emit LevelCompletedLog(msg.sender, data.level);
+      emit LevelCompletedLog(msg.sender, data.level, players[msg.sender]);
     }
   }
 }
