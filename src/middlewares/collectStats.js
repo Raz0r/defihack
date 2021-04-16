@@ -35,26 +35,26 @@ export default store => next => action => {
 
   // Get Level created
   if(!action.createdInstanceLogs) {
-    const instanceCreatedLog = state.contracts.ethernaut.LevelInstanceCreatedLog(query.filter, query.range)
-    instanceCreatedLog.then((error, result) => {
-      console.log(error);
-      console.log(result);
-      //if(error) return console.log(error)
-      //console.log(`instance log result`, result, error)
-      action.createdInstanceLogs = result
-      store.dispatch(action)
-    })
+    state.contracts.ethernaut.getPastEvents('LevelInstanceCreatedLog', {
+      fromBlock: 0,
+      toBlock: 'latest'
+    }, function(error, events){
+    }).then(function(events){
+      action.createdInstanceLogs = events;
+      store.dispatch(action);
+    });
   }
 
   // Level completed
   if(!action.completedLevelLogs) {
-    const levelCompletedLog = state.contracts.ethernaut.LevelCompletedLog(query.filter, query.range)
-    levelCompletedLog.then((error, result) => {
-      //if(error) return console.log(error)
-      //console.log(`completed log result:`, result, error)
-      action.completedLevelLogs = result
-      store.dispatch(action)
-    })
+    state.contracts.ethernaut.getPastEvents('LevelCompletedLog', {
+      fromBlock: 0,
+      toBlock: 'latest'
+    }, function(error, events){
+    }).then(function(events){
+      action.completedLevelLogs = events;
+      store.dispatch(action);
+    });
   }
 
   next(action)
