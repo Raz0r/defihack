@@ -14,6 +14,21 @@
       "deployId": "0",
       "instanceGas": 800000,
       "author": "ajsantander"
+    },
+    {
+      "name": "May The Force Be With You",
+      "created": "2021-04-22",
+      "difficulty": "0",
+      "description": "maytheforcebewithyou.md",
+      "completedDescription": "maytheforcebewithyou_complete.md",
+      "levelContract": "MayTheForceBeWithYouFactory.sol",
+      "instanceContract": "MayTheForceBeWithYou.sol",
+      "revealCode": true,
+      "deployParams": [],
+      "deployFunds": 0,
+      "deployId": "1",
+      "instanceGas": 800000,
+      "author": "raz0r"
     }
   ]
 }
