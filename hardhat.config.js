@@ -4,6 +4,11 @@ require("@nomiclabs/hardhat-truffle5");
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
+  networks: {
+    hardhat: {
+      chainId: 1337
+    },
+  },
   solidity: {
     compilers: [
       {

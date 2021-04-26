@@ -10,7 +10,7 @@ export const NETWORKS = {
     name: 'local',
     id: '*',
     url: 'http://localhost',
-    port: 7545
+    port: 8545
   },
   ROPSTEN: {
     name: 'ropsten',
