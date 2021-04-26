@@ -38,12 +38,13 @@ export default store => next => action => {
     })
       .then(tx => {
         console.dir(tx)
-        instanceAddress = tx.logs[0].args.instance;
-        if(tx.logs.length > 0) {
-          action.instanceAddress = instanceAddress
-          store.dispatch(action)
-        }
-        else {
+        tx.logs.filter(function(el) {
+          if (el.event == "LevelInstanceCreatedLog") {
+            action.instanceAddress = el.args.instance
+            store.dispatch(action)
+          }
+        })
+        if(tx.logs.length == 0) {
           showErr('tx contains no logs')
         }
       })
