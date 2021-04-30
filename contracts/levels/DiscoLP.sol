@@ -12,7 +12,7 @@ import "./Babylonian.sol";
  * @notice This contract implements liquidity mining for staking Uniswap V2
  * shares.
  */
-contract GLPMiningToken is ERC20, Ownable, ReentrancyGuard
+contract DiscoLP is ERC20, Ownable, ReentrancyGuard
 {
   using SafeERC20 for IERC20;
 
@@ -106,10 +106,10 @@ library UniswapV2LiquidityPoolAbstraction
 
 library $
 {
-	address constant AAVE = 0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9;
-	address constant WETH = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
-	address constant UniswapV2_FACTORY = 0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f;
-	address constant UniswapV2_ROUTER02 = 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D;
+	//address constant AAVE = 0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9;
+	//address constant WETH = 0x0a180a76e4466bf68a7f86fb029bed3cccfaaac5;
+	address constant UniswapV2_FACTORY = 0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f; // ropsten
+	address constant UniswapV2_ROUTER02 = 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D; // ropsten
 }
 
 interface Router01

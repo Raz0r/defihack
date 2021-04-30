@@ -6,7 +6,10 @@ require("@nomiclabs/hardhat-truffle5");
 module.exports = {
   networks: {
     hardhat: {
-      chainId: 1337
+      forking: {
+        url: "https://eth-ropsten.alchemyapi.io/v2/DX39e67S1a4pmCjgGKavlEOvl9RUCNGT",
+        blockNumber: 10144911
+      }
     },
   },
   solidity: {
@@ -15,7 +18,7 @@ module.exports = {
         version: "0.5.3"
       },
       {
-        version: "0.6.3"
+        version: "0.6.5"
       }
     ]
   },
