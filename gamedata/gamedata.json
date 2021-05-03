@@ -27,7 +27,7 @@
       "deployParams": [],
       "deployFunds": 0,
       "deployId": "1",
-      "instanceGas": 80000000,
+      "instanceGas": 9500000,
       "author": "raz0r"
     },
     {
@@ -36,13 +36,13 @@
       "difficulty": "7",
       "description": "discolp.md",
       "completedDescription": "discolp_complete.md",
-      "levelContract": "DiscoLP.sol",
-      "instanceContract": "DiscoLPFactory.sol",
+      "levelContract": "DiscoLPFactory.sol",
+      "instanceContract": "DiscoLP.sol",
       "revealCode": true,
       "deployParams": [],
       "deployFunds": 0,
       "deployId": "2",
-      "instanceGas": 80000000,
+      "instanceGas": 9500000,
       "author": "raz0r"
     }
   ]

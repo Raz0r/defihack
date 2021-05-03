@@ -3,6 +3,7 @@ pragma solidity ^0.6.0;
 import './base/Level.sol';
 import './DiscoLP.sol';
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "hardhat/console.sol";
 
 interface IUniswapV2Factory {
   event PairCreated(address indexed token0, address indexed token1, address pair, uint);
@@ -21,10 +22,12 @@ contract DiscoLPFactory is Level {
 
   function createInstance(address _player) override public payable returns (address) {
     _player;
+    console.log("CREATE INSTANCE");
     address _factory = $.UniswapV2_FACTORY;
     ERC20 tokenA = new ERC20("Token A", "TKNA");
     ERC20 tokenB = new ERC20("Token B", "TKNB");
     address reserveToken = IUniswapV2Factory(_factory).createPair(address(tokenA), address(tokenB));
+    console.log("RESERVE TOKEN: %s", reserveToken);
     DiscoLP instance = new DiscoLP("DiscoLP", "DISCO", 18, reserveToken);
     return address(instance);
   }
