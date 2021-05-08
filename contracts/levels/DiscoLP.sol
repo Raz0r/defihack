@@ -8,10 +8,6 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./Babylonian.sol";
 
-/**
- * @notice This contract implements liquidity mining for staking Uniswap V2
- * shares.
- */
 contract DiscoLP is ERC20, Ownable, ReentrancyGuard
 {
   using SafeERC20 for IERC20;
@@ -24,12 +20,7 @@ contract DiscoLP is ERC20, Ownable, ReentrancyGuard
 		_setupDecimals(_decimals);
 		assert(_reserveToken != address(0));
 		reserveToken = _reserveToken;
-		// just after creation it must transfer 1 wei from reserveToken
-		// into this contract
-		// this must be performed manually because we cannot approve
-		// the spending by this contract before it exists
-		// Transfers._pullFunds(_reserveToken, _from, 1);
-		_mint(address(this), 1);
+		_mint(address(this), 100000 * 10 ** 18); // some inital supply
 	}
 
 	function calcCostFromShares(uint256 _shares) public view returns (uint256 _cost)
@@ -42,6 +33,7 @@ contract DiscoLP is ERC20, Ownable, ReentrancyGuard
 		return IERC20(reserveToken).balanceOf(address(this));
 	}
 
+  // accepts only JIMBO or JAMBO tokens
 	function depositToken(address _token, uint256 _amount, uint256 _minShares) external nonReentrant
 	{
 		address _from = msg.sender;
@@ -55,10 +47,6 @@ contract DiscoLP is ERC20, Ownable, ReentrancyGuard
 	}
 }
 
-/**
- * @dev This library provides functionality to facilitate adding/removing
- * single-asset liquidity to/from a Uniswap V2 pool.
- */
 library UniswapV2LiquidityPoolAbstraction
 {
 	using SafeMath for uint256;
@@ -80,9 +68,9 @@ library UniswapV2LiquidityPoolAbstraction
 		_path[0] = _token;
 		_path[1] = _otherToken;
 		uint256 _otherAmount = Router02(_router).swapExactTokensForTokens(_swapAmount, 1, _path, address(this), uint256(-1))[1];
-		_approveFunds(_otherToken, _router, _otherAmount);
+    _approveFunds(_otherToken, _router, _otherAmount);
 		(,,_shares) = Router02(_router).addLiquidity(_token, _otherToken, _leftAmount, _otherAmount, 1, 1, address(this), uint256(-1));
-		require(_shares >= _minShares, "high slippage");
+    require(_shares >= _minShares, "high slippage");
 		return _shares;
 	}
 
@@ -106,8 +94,6 @@ library UniswapV2LiquidityPoolAbstraction
 
 library $
 {
-	//address constant AAVE = 0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9;
-	//address constant WETH = 0x0a180a76e4466bf68a7f86fb029bed3cccfaaac5;
 	address constant UniswapV2_FACTORY = 0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f; // ropsten
 	address constant UniswapV2_ROUTER02 = 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D; // ropsten
 }
