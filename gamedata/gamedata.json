@@ -44,6 +44,21 @@
       "deployId": "2",
       "instanceGas": 9500000,
       "author": "raz0r"
+    },
+    {
+      "name": "P2PSwapper",
+      "created": "2021-05-11",
+      "difficulty": "5",
+      "description": "p2pswapper.md",
+      "completedDescription": "p2pswapper_complete.md",
+      "levelContract": "P2PSwapperFactory.sol",
+      "instanceContract": "P2PSwapper.sol",
+      "revealCode": true,
+      "deployParams": [],
+      "deployFunds": 1,
+      "deployId": "3",
+      "instanceGas": 9500000,
+      "author": "beched"
     }
   ]
 }
