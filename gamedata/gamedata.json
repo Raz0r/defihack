@@ -59,6 +59,21 @@
       "deployId": "3",
       "instanceGas": 9500000,
       "author": "beched"
+    },
+    {
+      "name": "FakerDAO",
+      "created": "2021-05-13",
+      "difficulty": "5",
+      "description": "fakerdao.md",
+      "completedDescription": "fakerdao_complete.md",
+      "levelContract": "FakerDAOFactory.sol",
+      "instanceContract": "FakerDAO.sol",
+      "revealCode": true,
+      "deployParams": [],
+      "deployFunds": 0,
+      "deployId": "4",
+      "instanceGas": 9500000,
+      "author": "raz0r"
     }
   ]
 }
