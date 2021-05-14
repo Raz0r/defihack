@@ -4,7 +4,6 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
-import "hardhat/console.sol";
 
 contract FakerDAO is ERC20, ReentrancyGuard {
 
@@ -14,26 +13,20 @@ contract FakerDAO is ERC20, ReentrancyGuard {
 
     constructor (address _pair) public ERC20("Lambo", "LAMBO") {
         _setupDecimals(0);
-        pair = _pair;
-        _mint(address(this), 1000 * 10 ** 18);
+        pair = _pair; // Uniswap YIN-YANG pair
     }
-
 
     function borrow(uint256 _amount) public nonReentrant {
         uint256 _balance = Pair(pair).balanceOf(msg.sender);
-        console.log("_balance:", _balance);
-
         uint256 _tokenPrice = price();
-        console.log("_tokenPrice:", _tokenPrice);
         uint256 _depositRequired = _amount.mul(_tokenPrice);
-        console.log("_depositRequired:", _depositRequired);
 
         require(_balance >= _depositRequired, "Not enough collateral");
 
         // we get LP tokens
         Pair(pair).transferFrom(msg.sender, address(this), _depositRequired);
-        // you get a lambo
-        transfer(msg.sender, _amount);
+        // you get a LAMBO
+        _mint(msg.sender, _amount);
     }
 
     function price() public view returns (uint256) {

