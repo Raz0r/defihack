@@ -74,6 +74,21 @@
       "deployId": "4",
       "instanceGas": 9500000,
       "author": "raz0r"
+    },
+    {
+      "name": "Main Khinkal Chef",
+      "created": "2021-05-16",
+      "difficulty": "5",
+      "description": "mainchef.md",
+      "completedDescription": "mainchef_complete.md",
+      "levelContract": "MainChefFactory.sol",
+      "instanceContract": "MainChef.sol",
+      "revealCode": true,
+      "deployParams": [],
+      "deployFunds": 0,
+      "deployId": "5",
+      "instanceGas": 9500000,
+      "author": "beched"
     }
   ]
 }
