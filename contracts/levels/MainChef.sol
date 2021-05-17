@@ -518,7 +518,6 @@ contract MainChef is Ownable {
         require(pending <= pool.lastKhinkalReward, "Reward bigger than minted");
         if(pending > 0) {
             safeKhinkalTransfer(msg.sender, pending);
-            console.log("PRIPIZDOEBINA %s", pending);
         }
         if(user.amount > 0) {
             pool.lpToken.safeTransfer(address(msg.sender), user.amount);
