@@ -492,7 +492,11 @@ contract MainChef is Ownable {
                 user.amount.mul(pool.accKhinkalPerShare).div(1e12).sub(
                     user.rewardDebt
                 );
-            safeKhinkalTransfer(msg.sender, pending);
+            require(pending <= pool.lastKhinkalReward, "Reward bigger than minted");
+            if(pending > 0) {
+                khinkal.transfer(msg.sender, pending);
+            }
+            khinkal.transfer(msg.sender, pending);
         }
         pool.lpToken.safeTransferFrom(
             address(msg.sender),
@@ -517,7 +521,7 @@ contract MainChef is Ownable {
             );
         require(pending <= pool.lastKhinkalReward, "Reward bigger than minted");
         if(pending > 0) {
-            safeKhinkalTransfer(msg.sender, pending);
+            khinkal.transfer(msg.sender, pending);
         }
         if(user.amount > 0) {
             pool.lpToken.safeTransfer(address(msg.sender), user.amount);
@@ -537,19 +541,6 @@ contract MainChef is Ownable {
         emit EmergencyWithdraw(msg.sender, _pid, user.amount);
         user.amount = 0;
         user.rewardDebt = 0;
-    }
-
-    // Safe khinkal transfer function, just in case if rounding error causes pool to not have enough KHINKALs.
-    function safeKhinkalTransfer(
-        address _to,
-        uint256 _amount
-    ) internal {
-        uint256 khinkalBal = khinkal.balanceOf(address(this));
-        if (_amount > khinkalBal) {
-            khinkal.transfer(_to, khinkalBal);
-        } else {
-            khinkal.transfer(_to, _amount);
-        }
     }
 
     // Update governance address by the governance.
