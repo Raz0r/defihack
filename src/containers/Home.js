@@ -46,7 +46,7 @@ class Home extends React.Component {
         <div className="col-sm-8">
         {/* INFO */}
         { this.props.player.nickname ?
-        (<div><span>Hello, {this.props.player.nickname}!</span><form><button
+        (<div><h1>Hello, {this.props.player.nickname}!</h1><form><button
           style={{marginTop: '10px'}}
           className="btn btn-primary"
           onClick={() => this.navigateToFirstIncompleteLevel()}
