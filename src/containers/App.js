@@ -3,7 +3,6 @@ import Sidebar from 'react-sidebar';
 import Header from './Header';
 import SidebarContent from './Sidebar';
 import FontAwesome from 'react-fontawesome';
-import ReactGA from 'react-ga'
 import * as constants from '../constants'
 
 class App extends React.Component {
@@ -12,8 +11,8 @@ class App extends React.Component {
     super()
 
     // Analytics
-    ReactGA.initialize(constants.GOOGLE_ANALYTICS_ID);
-    ReactGA.pageview(window.location.pathname);
+    /*ReactGA.initialize(constants.GOOGLE_ANALYTICS_ID);
+    ReactGA.pageview(window.location.pathname);*/
   }
 
   componentDidUpdate(prevProps) {
