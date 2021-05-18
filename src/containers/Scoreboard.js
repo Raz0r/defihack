@@ -117,7 +117,7 @@ class Scoreboard extends React.Component {
   render() {
     return (
         <div  className="scoreboard">
-          <h3 style={{fontSize: 35, textAlign: 'center'}}>http://defihack.positive.com</h3>
+          <h3 style={{fontSize: 35, textAlign: 'center'}}>https://www.defihack.xyz</h3>
           { this.state.highscores.length === 0 &&
           <div>
             <span>Processing level complete logs...</span>

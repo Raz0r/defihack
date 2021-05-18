@@ -37,7 +37,7 @@ class Header extends React.Component {
               </span>
               &nbsp;
               <Link to={constants.PATH_ROOT}  style={{ textDecoration: 'none' }} activeStyle={{display: 'inline-block', verticalAlign: 'text-top', lineHeight: '22px'}}>
-                <span style={{}}>DeFi Hack</span>
+                <span style={{}}>🦄 DeFi Hack 🏴‍☠️</span>
               </Link>
             </div>
           </div>
@@ -60,9 +60,9 @@ class Header extends React.Component {
 
             {/* RIGHT */}
             <ul className="nav navbar-nav pull-right">
-              {/*<li>
+              {<li>
                 <Link style={{fontSize: '16px'}}><ConsoleDetect/></Link>
-              </li>*/}
+              </li>}
               <li>
                 <Link style={{fontSize: '16px'}}>{this.props.player.nickname ? <span
                   style={{fontSize: '16px'}}
