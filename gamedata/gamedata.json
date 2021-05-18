@@ -1,21 +1,6 @@
 {
   "levels": [
     {
-      "name": "Hello Ethernaut",
-      "created": "2017-11-01",
-      "difficulty": "0",
-      "description": "instances.md",
-      "completedDescription": "instances_complete.md",
-      "levelContract": "InstanceFactory.sol",
-      "instanceContract": "Instance.sol",
-      "revealCode": false,
-      "deployParams": [],
-      "deployFunds": 0,
-      "deployId": "0",
-      "instanceGas": 800000,
-      "author": "ajsantander"
-    },
-    {
       "name": "May The Force Be With You",
       "created": "2021-04-22",
       "difficulty": "5",
@@ -27,7 +12,7 @@
       "deployParams": [],
       "deployFunds": 0,
       "deployId": "1",
-      "instanceGas": 9500000,
+      "instanceGas": 8000000,
       "author": "raz0r"
     },
     {
@@ -42,7 +27,7 @@
       "deployParams": [],
       "deployFunds": 0,
       "deployId": "2",
-      "instanceGas": 9500000,
+      "instanceGas": 8000000,
       "author": "raz0r"
     },
     {
@@ -57,7 +42,7 @@
       "deployParams": [],
       "deployFunds": 1,
       "deployId": "3",
-      "instanceGas": 9500000,
+      "instanceGas": 8000000,
       "author": "beched"
     },
     {
@@ -72,7 +57,7 @@
       "deployParams": [],
       "deployFunds": 0,
       "deployId": "4",
-      "instanceGas": 9500000,
+      "instanceGas": 8000000,
       "author": "raz0r"
     },
     {
@@ -87,7 +72,7 @@
       "deployParams": [],
       "deployFunds": 0,
       "deployId": "5",
-      "instanceGas": 9500000,
+      "instanceGas": 8000000,
       "author": "beched"
     }
   ]

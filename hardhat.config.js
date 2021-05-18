@@ -5,7 +5,7 @@ require("@nomiclabs/hardhat-truffle5");
 module.exports = {
   networks: {
     hardhat: {
-      blockGasLimit: 450000000,
+      blockGasLimit: 8000000,
       forking: {
         url: "https://eth-ropsten.alchemyapi.io/v2/DX39e67S1a4pmCjgGKavlEOvl9RUCNGT",
         blockNumber: 10144911
