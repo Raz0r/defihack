@@ -3,7 +3,7 @@
     {
       "name": "May The Force Be With You",
       "created": "2021-04-22",
-      "difficulty": "5",
+      "difficulty": "3",
       "description": "maytheforcebewithyou.md",
       "completedDescription": "maytheforcebewithyou_complete.md",
       "levelContract": "MayTheForceBeWithYouFactory.sol",
@@ -48,7 +48,7 @@
     {
       "name": "FakerDAO",
       "created": "2021-05-13",
-      "difficulty": "5",
+      "difficulty": "7",
       "description": "fakerdao.md",
       "completedDescription": "fakerdao_complete.md",
       "levelContract": "FakerDAOFactory.sol",
