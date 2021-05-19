@@ -21,17 +21,14 @@ contract('MayTheForceBeWithYou', function(accounts) {
 
   it('should allow the player to solve the level', async function() {
 
-    const instance = await utils.createLevelInstance(
+    instance = await utils.createLevelInstance(
       ethernaut, level.address, player, Instance,
       {from: player}
     )
 
-    assert(instance);
-
-    /*const password = await instance.password.call()
-    await instance.authenticate(password)
-    const clear = await instance.getCleared()
-    assert.equal(clear, true)
+    // the attack
+    await instance.deposit(69420);
+    await instance.withdraw(69420);
 
     // Factory check
     const ethCompleted = await utils.submitLevelInstance(
@@ -39,9 +36,9 @@ contract('MayTheForceBeWithYou', function(accounts) {
       level.address,
       instance.address,
       player
-    )*/
+    )
 
-    //assert.equal(ethCompleted, true)
+    assert.equal(ethCompleted, true)
   });
 
 });
